@@ -25,12 +25,19 @@ Sounds are automatically fetched from Soundpad and get categorized by their pare
 
 * Dark/light modes
 
+### Changes in this fork:
+
+* On some older devices (for example, running Android 6.0.1), when using the PWA application, it opened in portrait orientation (I use Sony Xperia Z3 Tablet Compact and it is very inconvenient to use this web panel in portrait orientation) - the PWA manifest was changed so that blocking in one orientation or another did not occur (by [frsvme](https://github.com/frsvme))
+* Buttons for Start or Stop Microphone/Speakers recording (by [frsvme](https://github.com/frsvme))
+* The logic of downloading playlists and audio files has been slightly redesigned, so that when recording stops - files appear in the web-panel instantly (by [asoco](https://github.com/asoco))
+
+
 ## Requirements
 
 To get started with <b>Soundpad Web</b>, you need:
 
 * [Node.js](https://nodejs.org/it/)
-* [Soundpad](https://store.steampowered.com/app/629520/Soundpad/)
+* [Soundpad](https://store.steampowered.com/app/629520/Soundpad/) (Version 4.0.1+ (tested specifically on this version))
 
 ## Setup
 
