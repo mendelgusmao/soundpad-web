@@ -30,7 +30,6 @@ Sounds are automatically fetched from Soundpad and get categorized by their pare
 * On some older devices (for example, running Android 6.0.1), when using the PWA application, it opened in portrait orientation (I use Sony Xperia Z3 Tablet Compact and it is very inconvenient to use this web panel in portrait orientation) - the PWA manifest was changed so that blocking in one orientation or another did not occur (by [frsvme](https://github.com/frsvme))
 * Buttons for Start or Stop Microphone/Speakers recording (by [frsvme](https://github.com/frsvme))
 * The logic of downloading playlists and audio files has been slightly redesigned, so that when recording stops - files appear in the web-panel instantly (by [asoco](https://github.com/asoco))
-* To use the file «launch_nonsteam.bat» - create any folder in the program directory «SoundPad.exe» (for example, a folder named «web») and place all the contents of this repository in the created folder.
 
 ## Requirements
 
@@ -54,3 +53,14 @@ npm run dev
 ```
 
 The web interface is then accessible with the displayed port.
+
+## Start development server via .bat
+
+To use the file «launch_nonsteam.bat» - create any folder in the program directory «SoundPad.exe» (for example, a folder named «web») and place all the contents of this repository in the created folder.
+<br />Otherwise, just launch the «SoundPad» application, and then run the «launch_web.bat» file
+<br />P.S.
+Launch the web panel via the .bat file is possible only after you initiate the
+```sh
+npm install
+```
+command in the root directory with the contents of this repository
