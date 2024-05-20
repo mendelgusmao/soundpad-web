@@ -43,7 +43,7 @@ const ControlView = ({ updateSounds }:any) => {
     ];
     return (
         <div
-            className="flex flex-row flex-grow overflow-x-scroll snap-mandatory snap-x
+            className="sticky top-0 bg-black flex flex-row flex-grow overflow-x-scroll snap-mandatory snap-x
                  md:flex-col md:snap-y md:overflow-x-hidden"
         >
             <section
