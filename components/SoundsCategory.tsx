@@ -15,8 +15,8 @@ const SoundsCategory = (props: Props) => {
                  md:text-left"
     >
       <h3
-        className="text-xl px-1 mb-4 font-bold text-gray-400
-                   dark:text-zinc-500"
+        className="text-xl px-1 mb-4 font-bold text-gray-600
+                   dark:text-zinc-300"
       >
         {props.category.name}
       </h3>
