@@ -34,12 +34,6 @@ const ControlView = ({ updateSounds }:any) => {
                 setTimeout(updateSounds, 500);
             },
         },
-        // {
-        //     title: "Update Files",
-        //     onClick: () => {
-        //         updateSounds();
-        //     },
-        // },
     ];
     return (
         <div

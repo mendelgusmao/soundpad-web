@@ -9,7 +9,6 @@ type Props = {
 };
 
 const CategoryViewer = (props: Props) => {
-  console.log("CategoryViewer",props);
   return (
     <div
       className="flex flex-row flex-grow overflow-x-scroll snap-mandatory snap-x
