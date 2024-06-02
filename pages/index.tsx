@@ -5,19 +5,25 @@ import Category from "../models/Category";
 import GetSoundsRes from "../models/GetSoundsRes";
 
 import CategoryViewer from "../components/CategoryViewer";
+import ControlView from "../components/ControlView";
+
+export const renderFiles = async ()=>{
+    let res = await fetch("api/getSounds")
+    let {categories} = await res?.json();
+    return categories;
+}
 
 export default function Home() {
   const [categories, setCategories] = useState<Category[]>([]);
+  
+  const updateSounds = async ()=>{
+      setCategories(await renderFiles());
+  }
 
   useEffect(() => {
-    fetch("api/getSounds")
-      .then((res) => res.json())
-      .then((data: GetSoundsRes) => {
-        if (categories != undefined) {
-          setCategories(data.categories!);
-        }
-      });
-  }, []);
+    updateSounds()
+      .catch(console.error);
+  }, [])
 
   return (
     <div className="bg-gray-100 dark:bg-black">
@@ -30,6 +36,8 @@ export default function Home() {
         <h1 className="text-3xl font-bold p-5 text-black dark:text-white">
           Soundpad
         </h1>
+
+        <ControlView updateSounds={updateSounds} />
 
         <CategoryViewer
           categories={categories}
