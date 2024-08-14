@@ -1,11 +1,9 @@
 import Category from "../models/Category";
-import Sound from "../models/Sound";
 
 import SoundButton from "./SoundButton";
 
 type Props = {
   category: Category;
-  onSoundPressed: (sound: Sound) => void;
 };
 
 const SoundsCategory = (props: Props) => {
@@ -27,10 +25,10 @@ const SoundsCategory = (props: Props) => {
       >
         {props.category.sounds.map((sound) => (
           <SoundButton
+            id={sound.id}
             key={sound.id}
             title={sound.title}
             duration={sound.duration}
-            onClick={() => props.onSoundPressed(sound)}
           />
         ))}
       </div>

@@ -1,11 +1,9 @@
 import Category from "../models/Category";
-import Sound from "../models/Sound";
 
 import SoundsCategory from "./SoundsCategory";
 
 type Props = {
   categories: Category[];
-  onSoundPressed: (sound: Sound) => void;
 };
 
 const CategoryViewer = (props: Props) => {
@@ -17,7 +15,6 @@ const CategoryViewer = (props: Props) => {
       {props.categories?.map((category) => (
         <SoundsCategory
           category={category}
-          onSoundPressed={props.onSoundPressed}
         />
       ))}
     </div>
