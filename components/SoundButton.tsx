@@ -1,23 +1,12 @@
-import { useState } from "react";
-
 type Props = {
   id: number;
   title: string;
   duration: string;
+  toggleSound: (id: number, duration: any) => void;
 };
 
 const SoundButton = (props: Props) => {
-  const [playing, setPlaying] = useState<boolean>(true);
-
-  const toggleSound = () => {
-    if (playing) {
-      fetch(`api/playSound/${props.id}`);
-    } else {
-      fetch(`api/stopSound`);
-    }
-
-    setPlaying(!playing);
-  };
+  const toggleSound = () => props.toggleSound(props.id, props.duration);
 
   return (
     <button
