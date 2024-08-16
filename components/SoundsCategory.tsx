@@ -72,6 +72,7 @@ const SoundsCategory = (props: Props) => {
             key={sound.id}
             title={sound.title}
             duration={sound.duration}
+            playing={playingState.id === sound.id}
             toggleSound={toggleSound}
           />
         ))}
