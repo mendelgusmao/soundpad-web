@@ -5,11 +5,12 @@ type Props = {
   title: string;
   duration: string;
   playing: boolean;
-  toggleSound: (id: number, duration: any) => void;
+  toggleSound: (id: number, title: string, duration: any) => void;
 };
 
 const SoundButton = (props: Props) => {
-  const toggleSound = () => props.toggleSound(props.id, props.duration);
+  const {id, title, duration} = props;
+  const toggleSound = () => props.toggleSound(id, title, duration);
 
   return (
     <button

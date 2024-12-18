@@ -9,12 +9,14 @@ type Props = {
 
 type PlayingState = {
   id: number;
+  title: string;
   timeout: any;
 };
 
 const SoundsCategory = (props: Props) => {
   const [playingState, setPlayingState] = useState<PlayingState>({
     id: 0,
+    title: "",
     timeout: null,
   });
 
@@ -25,11 +27,12 @@ const SoundsCategory = (props: Props) => {
 
     setPlayingState({
       id: 0,
+      title: "",
       timeout: null,
     });
   }
 
-  const toggleSound = async (id: number, duration: any) => {
+  const toggleSound = async (id: number, title: string, duration: any) => {
     const [m, s] = `${duration}`.split(":");
     const seconds = parseInt(m, 10) * 60 + parseInt(s, 10);
     const { id: oldId } = playingState;
@@ -42,6 +45,7 @@ const SoundsCategory = (props: Props) => {
       fetch(`api/playSound/${id}`);
       setPlayingState({
         id,
+        title,
         timeout: setTimeout(
           emptyPlayingState,
           seconds * 1000
@@ -49,6 +53,9 @@ const SoundsCategory = (props: Props) => {
       });
     }
   };
+
+  const {sounds} = props.category;
+  sounds.sort((a, b) => a.title > b.title ? 1 : -1);
 
   return (
     <section
@@ -59,14 +66,14 @@ const SoundsCategory = (props: Props) => {
         className="text-xl px-1 mb-4 font-bold text-gray-600
                    dark:text-zinc-300"
       >
-        {props.category.name}
+        {props.category.name} <u>{playingState.title}</u>
       </h3>
 
       <div
         className="flex flex-wrap flex-row justify-center content-start
                    md:justify-start"
       >
-        {props.category.sounds.map((sound) => (
+        {sounds.map((sound) => (
           <SoundButton
             id={sound.id}
             key={sound.id}
