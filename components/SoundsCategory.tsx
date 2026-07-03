@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import Category from "../models/Category";
 import SoundButton from "./SoundButton";
@@ -32,6 +32,19 @@ const SoundsCategory = (props: Props) => {
     });
   }
 
+  const [sortByPlayCount, setSortByPlayCount] = useState<boolean>(true);
+
+  const sortedSounds = useMemo(() => {
+    const sounds = [...props.category.sounds];
+    sounds.sort((a, b) => a.title.localeCompare(b.title));
+
+    if (sortByPlayCount) {
+      sounds.sort((a, b) => b.playCount - a.playCount);
+    }
+
+    return sounds;
+  }, [props.category.sounds, sortByPlayCount]);
+
   const toggleSound = async (id: number, title: string, duration: any) => {
     const [m, s] = `${duration}`.split(":");
     const seconds = parseInt(m, 10) * 60 + parseInt(s, 10);
@@ -54,9 +67,6 @@ const SoundsCategory = (props: Props) => {
     }
   };
 
-  const {sounds} = props.category;
-  sounds.sort((a, b) => a.title > b.title ? 1 : -1);
-
   return (
     <section
       className="flex flex-col w-screen px-5 mb-4 shrink-0 snap-start text-center
@@ -69,11 +79,20 @@ const SoundsCategory = (props: Props) => {
         {props.category.name} <u>{playingState.title}</u>
       </h3>
 
+      <div>
+        <label className="mr-2">Sort by play count</label>
+        <input
+          type="checkbox"
+          checked={sortByPlayCount}
+          onChange={(event) => setSortByPlayCount(event.target.checked)}
+        />
+      </div>
+
       <div
         className="flex flex-wrap flex-row justify-center content-start
                    md:justify-start"
       >
-        {sounds.map((sound) => (
+        {sortedSounds.map((sound) => (
           <SoundButton
             id={sound.id}
             key={sound.id}

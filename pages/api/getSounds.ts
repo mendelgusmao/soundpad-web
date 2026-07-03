@@ -39,6 +39,7 @@ export default async function handler(
         title: name,
         duration: sound.$.duration,
         id: sound.$.index,
+        playCount: parseInt(`${sound.$.playCount}`, 10),
       });
     }
   });
